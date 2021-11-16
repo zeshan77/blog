@@ -24,7 +24,12 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('admin/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::group(['prefix' => 'admin/posts'], function() {
+        Route::get('', [PostController::class, 'index'])->name('posts.index');
+        Route::post('', [PostController::class, 'store'])->name('posts.store');
+        Route::get('create', [PostController::class, 'create'])->name('posts.create');
+    });
+
 });
 
 
