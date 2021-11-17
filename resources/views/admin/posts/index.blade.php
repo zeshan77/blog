@@ -38,7 +38,10 @@
                                     <td class="border py-3">{{ $post->title }}</td>
                                     <td class="border py-3">{{ $post->has_published }}</td>
                                     <td class="border py-3">{{ $post->created_at }}</td>
-                                    <td class="border py-3">--</td>
+                                    <td class="border py-3">
+                                        <a class="text-blue-500 hover:underline" href="/admin/posts/{{ $post->id }}/delete">Delete</a> -
+                                        <a class="text-blue-500 hover:underline" href="/admin/posts/{{ $post->id }}/edit">Edit</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="py-4">
