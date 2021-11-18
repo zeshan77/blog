@@ -39,19 +39,17 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-               <h2 class="text-2xl">Recent blogs</h2>
-                <ul class="mt-8">
-                    @forelse($posts as $post)
-                        <li class="mb-6 rounded border-b border-gray-300 pb-3 bg-gray-200 shadow px-5 pt-4">
-                            <div class="text-lg font-bold mb-2">
-                                <a class="text-blue-500 hover:underline" href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
-                            </div>
-                            <div>{{ $post->summary }}</div>
-                        </li>
-                    @empty
-                        <li>There are no posts in the database.</li>
-                    @endforelse
-                </ul>
+                <a href="/" class="text-blue-500 hover:underline">Show all posts</a>
+                <div class="my-4">
+                   <h2 class="text-2xl">{{ $post->title }}</h2>
+                    <span title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</span><br/>
+                    <span>Author: {{ $post->user->name }}</span>
+                </div>
+
+                <h3 class="mb-3">{{ $post->summary }}</h3>
+
+                <p class="mb-3">{{ $post->content }}</p>
+
             </div>
         </div>
     </body>
