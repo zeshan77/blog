@@ -49,8 +49,42 @@
                 <h3 class="mb-3">{{ $post->summary }}</h3>
 
                 <p class="mb-3">{{ $post->content }}</p>
-
             </div>
+
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-8">
+                <h3 class="text-3xl mb-6">Comments</h3>
+                <ul>
+                    @forelse($post->comments as $comment)
+                        <li class="flex align-middle justify-between mb-6 border-b border-gray-300">
+                            <div>
+                                {{ $comment->body }}
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <span>{{ $comment->created_at->diffForHumans() }}</span> <br/>
+                                <span>{{ $comment->user->name }}</span>
+                            </div>
+
+                        </li>
+                    @empty
+                        <li class="mb-8">Be the first to comment!</li>
+                    @endforelse
+                </ul>
+
+                @if(session()->has('message'))
+                    <div class="bg-green-100 p-4 my-4">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('posts.comments', $post->slug) }}" method="post">
+                    @csrf
+                    <div>
+                        <textarea name="body" id="body" cols="30" rows="2" class="w-full border rounded" placeholder="Type your comment here"></textarea>
+                        <button type="submit" class="bg-blue-500 border rounded px-4 py-2 text-white hover:opacity-75">Add comment</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </body>
 </html>

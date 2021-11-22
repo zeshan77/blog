@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostCommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/posts/{slug}', [HomeController::class, 'show']);
+Route::post('/posts/{slug}/comments', [PostCommentController::class, 'store'])->name('posts.comments');
 
 Route::group(['middleware' => 'auth'], function() {
 
