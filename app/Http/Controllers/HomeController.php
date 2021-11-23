@@ -19,7 +19,8 @@ class HomeController extends Controller
     public function show($slug)
     {
         $post = Post::with(['comments' => function($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->where('has_approved', '!=', NULL)
+                ->orderBy('created_at', 'desc');
         }])->where('slug', $slug)->first();
 
         return view('details', [

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostCommentController;
@@ -34,6 +35,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('{post}', [PostController::class, 'update'])->name('posts.update');
     });
+
+    Route::get('admin/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::get('admin/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+    Route::get('admin/comments/{comment}/delete', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 });
 
