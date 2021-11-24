@@ -38,7 +38,14 @@
                                 <td class="border py-3">{{ $comment->created_at->diffForHumans() }}</td>
                                 <td class="border py-3">
                                     <a class="text-blue-500 hover:underline" href="/admin/comments/{{ $comment->id }}/delete">Delete</a> -
-                                    <a class="text-blue-500 hover:underline" href="/admin/comments/{{ $comment->id }}/approve">Approve</a>
+                                    <a class="text-blue-500 hover:underline" href="/admin/comments/{{ $comment->id }}/approval">
+                                        {{ $comment->has_approved ? 'Disapprove' : 'Approve' }}
+{{--                                        @if($comment->has_approved)--}}
+{{--                                            {{ 'Disapprove' }}--}}
+{{--                                        @else--}}
+{{--                                            {{ 'Approve' }}--}}
+{{--                                        @endif--}}
+                                    </a>
                                 </td>
                             </tr>
                         @empty

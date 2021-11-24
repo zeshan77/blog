@@ -37,7 +37,13 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::get('admin/comments', [CommentController::class, 'index'])->name('comments.index');
+
+    // Deprecated in favor of approval route
     Route::get('admin/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+
+    Route::get('admin/comments/{comment}/approval', [CommentController::class, 'approval'])->name('comments.approval');
+
+
     Route::get('admin/comments/{comment}/delete', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 });

@@ -76,13 +76,19 @@
                     </div>
                 @endif
 
-                <form action="{{ route('posts.comments', $post->slug) }}" method="post">
-                    @csrf
-                    <div>
-                        <textarea name="body" id="body" cols="30" rows="2" class="w-full border rounded" placeholder="Type your comment here"></textarea>
-                        <button type="submit" class="bg-blue-500 border rounded px-4 py-2 text-white hover:opacity-75">Add comment</button>
-                    </div>
-                </form>
+                @auth
+                    <form action="{{ route('posts.comments', $post->slug) }}" method="post">
+                        @csrf
+                        <div>
+                            <textarea name="body" id="body" cols="30" rows="2" class="w-full border rounded" placeholder="Type your comment here"></textarea>
+                            <button type="submit" class="bg-blue-500 border rounded px-4 py-2 text-white hover:opacity-75">Add comment</button>
+                        </div>
+                    </form>
+                @endauth
+
+                @guest
+                    <p>You must be log in to comment</p>
+                @endguest
             </div>
 
         </div>
