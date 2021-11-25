@@ -58,6 +58,13 @@
                         <li class="flex align-middle justify-between mb-6 border-b border-gray-300">
                             <div>
                                 {{ $comment->body }}
+                                
+                                @auth
+                                    @if($comment->user_id === auth()->id())
+                                        <br/>
+                                        <a class="text-xs text-blue-400 hover:underline" href="/comments/{{$comment->id}}/delete">Delete</a>
+                                    @endif
+                                @endauth
                             </div>
                             <div class="text-sm text-gray-600">
                                 <span>{{ $comment->created_at->diffForHumans() }}</span> <br/>
@@ -73,6 +80,12 @@
                 @if(session()->has('message'))
                     <div class="bg-green-100 p-4 my-4">
                         {{ session('message') }}
+                    </div>
+                @endif
+
+                @if(session()->has('error'))
+                    <div class="bg-red-100 p-4 my-4">
+                        {{ session('error') }}
                     </div>
                 @endif
 
