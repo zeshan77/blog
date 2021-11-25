@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostCommentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController as FrontCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/posts/{slug}', [HomeController::class, 'show']);
 Route::post('/posts/{slug}/comments', [PostCommentController::class, 'store'])->name('posts.comments');
+
+Route::get('comments/{comment}/delete', [FrontCommentController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth'], function() {
 
