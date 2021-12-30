@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ExpirePosts;
+use App\Console\Commands\PublishPosts;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        PublishPosts::class,
+        ExpirePosts::class,
     ];
 
     /**
@@ -24,6 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('posts:publish')->daily();
+        $schedule->command('posts:expire')->daily();
         // $schedule->command('inspire')->hourly();
     }
 

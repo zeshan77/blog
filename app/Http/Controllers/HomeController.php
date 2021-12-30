@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::whereNotNull('has_published')->get();
 
         return view('welcome', [
             'posts' => $posts,
