@@ -39,7 +39,7 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-               <h2 class="text-2xl">Recent blogs</h2>
+               <h2 class="text-2xl">Most recent blogs</h2>
                 <ul class="mt-8">
                     @forelse($posts as $post)
                         <li class="mb-6 rounded border-b border-gray-300 pb-3 bg-gray-200 shadow px-5 pt-4">
